@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
     tools:context=".MainActivity">
 
-
-
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:srcCompat="@drawable/cover2" />
 
 
     <LinearLayout
+
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="270dp"
         android:orientation="vertical">
+
 
         <RadioButton
             android:id="@+id/metric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="@dimen/cardview_compat_inset_shadow"
             android:checked="false"
             android:text="Metric Units"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -32,7 +38,6 @@
             android:id="@+id/english"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="@dimen/cardview_compat_inset_shadow"
             android:checked="false"
             android:text="English Units"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -75,14 +80,16 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
             android:ems="20"
-            android:text="Calculate BMI" />
+            android:text="Calculate BMI"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/adviceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:text="Get advice" />
+            android:text="Get advice"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
     <LinearLayout
@@ -100,7 +107,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Your BMI will be here"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </LinearLayout>
 
