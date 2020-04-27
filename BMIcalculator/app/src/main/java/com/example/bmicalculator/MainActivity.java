@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import android.content.Context;
 public class MainActivity extends AppCompatActivity {
 
     public double height;
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         bmiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (checkIfUnitsSelected() == false || checkIfInputEntered() == false){
+                    return;
+                }
                 calculateBMI();
             }
         });
@@ -48,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
         adviceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (checkIfUnitsSelected() == false || checkIfInputEntered() == false){
+                    return;
+                }
                 startActivity(new Intent(getApplicationContext(), Main2Activity.class));
             }
-        });
+       });
 
         //The metric button is clicked
         metric = (RadioButton) findViewById(R.id.metric);
@@ -90,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         if (english.isChecked()) {
             english.setChecked(false);
         }
+        heightInput.setHint("Enter height in meters");
+        weightInput.setHint("Enter weight in kilograms");
         isMetric = true;
     }
 
@@ -97,7 +106,36 @@ public class MainActivity extends AppCompatActivity {
         if (metric.isChecked()) {
             metric.setChecked(false);
         }
+        heightInput.setHint("Enter height in inches");
+        weightInput.setHint("Enter weight in pounds");
         isMetric = false;
+    }
+
+    public boolean checkIfUnitsSelected(){
+        if (!english.isChecked() && !metric.isChecked()){
+            Context context = getApplicationContext();
+            CharSequence text = "Error: Select English or Metric units before " +
+                    "calculating BMI or requesting advice";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkIfInputEntered(){
+        height = Double.valueOf(heightInput.getText().toString());
+        weight = Double.valueOf(weightInput.getText().toString());
+        if (height < 1 || weight < 1 ){
+            Context context = getApplicationContext();
+            CharSequence text = "Error: Please enter valid numeric input for Weight and Height";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return false;
+        }
+        return true;
     }
 
 }
