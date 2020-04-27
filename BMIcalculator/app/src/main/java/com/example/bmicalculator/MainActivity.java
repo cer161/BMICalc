@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkIfInputEntered(){
         height = Double.valueOf(heightInput.getText().toString());
         weight = Double.valueOf(weightInput.getText().toString());
-        if (height < 1 || weight < 1 ){
+        if (height < 0.1 || weight < 0.1 ){
             Context context = getApplicationContext();
             CharSequence text = "Error: Please enter valid numeric input for Weight and Height";
             int duration = Toast.LENGTH_SHORT;
